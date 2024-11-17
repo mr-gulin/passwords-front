@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use 'theme';
+
+$sizes: (
+    320: (
+        width: 320,
+        padding: 20 20 20 20,
+    ),
+    760: (
+        padding: 30,
+    ),
+    1440: (
+        padding: 0,
+    ),
+);
+
+.container {
+    @include theme.sizes($sizes);
+    @include theme.typography(heading1);
+
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: theme.color(primary);
+    color: theme.color(secondary);
+    text-align: center;
+}

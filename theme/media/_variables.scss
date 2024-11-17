@@ -1,0 +1,21 @@
+$separator: ' ';
+
+/*
+    $breakpoints: (
+        scaleFactor: ( breakpointFrom, breakpointTo )
+    )
+
+    scaleFactor: number from design layout (will be used to scale things)
+    breakpointFrom: null or positive number
+    breakpointTo: null or positive number
+ */
+$breakpoints: (
+    375: (
+        null,
+        767,
+    ),
+    1024: (
+        768,
+        null,
+    ),
+);

@@ -1,0 +1,24 @@
+/*
+    Typography variants declaration.
+    Count of values should match count of breakpoints.
+    First value matches first element of breakpoints array and so on (theme/media/_variables.scss)
+
+    If there is no value matching breakpoint in array, the first value used (e.g. if there is
+    one value here, it is used for all breakpoints).
+
+    If there are 2 values here and 3 breakpoints, the 1st value is used for the 1st breakpoint,
+    2d value is used for 2d breakpoint, and for 3d breakpoint the 1st value is used.
+
+    font-size: sizes is required, max-sizes is optional.
+ */
+$typography: (
+    heading1: (
+        font-size: (
+            sizes: 80 100 120,
+            max-sizes: 100px 120px 140px,
+        ),
+        font-weight: 400,
+        line-height: 1 1.2 1.4,
+        letter-spacing: 0 -0.01em -0.02em,
+    ),
+);

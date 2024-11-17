@@ -1,0 +1,17 @@
+@use 'sass:string';
+
+@function is-clean-number($value) {
+    @if (type-of($value) == number) {
+        $units: (px, pt, em, rem, vw, vh, vmin, vmax, '%');
+
+        @each $unit in $units {
+            @if string.index(#{$value}, $unit) {
+                @return null;
+            }
+        }
+
+        @return true;
+    }
+
+    @return null;
+}

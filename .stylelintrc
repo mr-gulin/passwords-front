@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-idiomatic-order",
+    "stylelint-config-prettier-scss"
+  ],
+  "rules": {
+    "comment-empty-line-before": [
+      "always",
+      {
+        "except": ["first-nested"],
+        "ignore": ["stylelint-commands"]
+      }
+    ],
+    "declaration-empty-line-before": [
+      "always",
+      {
+        "except": ["after-declaration", "first-nested"],
+        "ignore": ["after-comment", "inside-single-line-block"]
+      }
+    ],
+    "length-zero-no-unit": true,
+    "max-nesting-depth": 10,
+    "rule-empty-line-before": [
+      "always-multi-line",
+      {
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "selector-class-pattern": null
+  }
+}
