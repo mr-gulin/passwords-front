@@ -1,7 +1,7 @@
 import { TOKEN_LOCALSTORAGE_KEY } from '@/api/constants';
 
 const getCsrfToken = async () => {
-    const response = await fetch(`${process.env.API_URL}/csrf/`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/csrf/`, {
         method: 'GET',
         credentials: 'include',
     });
@@ -13,7 +13,7 @@ const getCsrfToken = async () => {
 };
 
 export const getRequest = async (path: string, queryParams?: any) => {
-    let url = `${process.env.API_URL}${path}`;
+    let url = `${process.env.NEXT_PUBLIC_API_URL}${path}`;
 
     const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY) || '';
 
@@ -31,7 +31,7 @@ export const getRequest = async (path: string, queryParams?: any) => {
 export const postRequest = async (path: string, data: any) => {
     const { csrf } = await getCsrfToken();
 
-    let url = `${process.env.API_URL}${path}`;
+    let url = `${process.env.NEXT_PUBLIC_API_URL}${path}`;
     const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY) || '';
 
     if (!url.endsWith('/')) {

@@ -40,7 +40,7 @@ export const GoogleSignIn = ({ isSignUp = false }: IProps) => {
         const text = isSignUp ? 'signup_with' : 'signin_with';
 
         window?.google?.accounts?.id?.initialize({
-            client_id: process.env.GOOGLE_CLIENT_ID,
+            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
             ux_mode: 'popup',
             context,
             itp_support: 'true',
