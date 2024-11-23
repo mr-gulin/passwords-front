@@ -1,5 +1,6 @@
 'use client';
 
+import { env } from 'next-runtime-env';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { REFRESH_TOKEN_LOCALSTORAGE_KEY, TOKEN_LOCALSTORAGE_KEY } from '@/api/constants';
@@ -8,7 +9,6 @@ import {
     GOOGLE_SCRIPT_SRC,
 } from '@/components/GoogleSignIn/constants';
 import { GoogleCredentialsResponse } from '@/components/GoogleSignIn/types';
-import { env } from 'next-runtime-env';
 
 interface IProps {
     isSignUp?: boolean;
