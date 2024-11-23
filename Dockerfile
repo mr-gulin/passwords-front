@@ -18,7 +18,6 @@ COPY --from=deps /app/package.json /app/package.json
 
 COPY --from=build /app/public /app/public
 COPY --from=build /app/.next /app/.next
-COPY --from=build /app/.env /app/.env
 
 ENV HOST=0.0.0.0
 EXPOSE 3000
