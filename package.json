@@ -1,6 +1,6 @@
 {
-  "name": "mr-gulin-nextjs",
-  "version": "1.0.2",
+  "name": "secrets",
+  "version": "0.0.1",
   "engines": {
     "npm": ">=10.7",
     "node": ">=20.15"

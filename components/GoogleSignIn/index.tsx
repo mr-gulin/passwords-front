@@ -2,12 +2,12 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { GoogleCredentialsResponse } from '@/components/GoogleSignIn/types';
+import { REFRESH_TOKEN_LOCALSTORAGE_KEY, TOKEN_LOCALSTORAGE_KEY } from '@/api/constants';
 import { postRequest } from '@/api/helpers';
 import {
     GOOGLE_SCRIPT_SRC,
 } from '@/components/GoogleSignIn/constants';
-import { REFRESH_TOKEN_LOCALSTORAGE_KEY, TOKEN_LOCALSTORAGE_KEY } from '@/api/constants';
+import { GoogleCredentialsResponse } from '@/components/GoogleSignIn/types';
 
 interface IProps {
     isSignUp?: boolean;
