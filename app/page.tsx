@@ -1,5 +1,11 @@
-import styles from './page.module.scss';
+import { Encrypt } from '@/components/Encrypt';
+import { GoogleSignIn } from '@/components/GoogleSignIn';
+import { Test } from '@/components/Test';
 
 export default function Home() {
-    return <main className={styles.container}>@mr-gulin/nextjs</main>;
+    return <div>
+        <Encrypt />
+        <Test />
+        <GoogleSignIn />
+    </div>;
 }

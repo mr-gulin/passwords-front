@@ -1,4 +1,4 @@
-FROM node:20.12.2-slim as base
+FROM node:20.15.0-slim as base
 ARG NODE_ENV
 WORKDIR /app
 RUN apt-get update -y && apt-get install -y openssl
