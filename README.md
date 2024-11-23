@@ -1,4 +1,4 @@
-# @mr-gulin/passwords-front
+# @mr-gulin/secrets
 
 This is a frontend repo for the Passwords app @ passwords.gulin.io.
 
