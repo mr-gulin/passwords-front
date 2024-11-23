@@ -10,6 +10,7 @@ RUN npm ci
 
 FROM deps as build
 COPY . /app
+RUN rm .env.example
 RUN npm run build
 
 FROM base as run
