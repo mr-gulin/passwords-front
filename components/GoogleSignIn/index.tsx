@@ -8,6 +8,7 @@ import {
     GOOGLE_SCRIPT_SRC,
 } from '@/components/GoogleSignIn/constants';
 import { GoogleCredentialsResponse } from '@/components/GoogleSignIn/types';
+import { env } from 'next-runtime-env';
 
 interface IProps {
     isSignUp?: boolean;
@@ -40,7 +41,7 @@ export const GoogleSignIn = ({ isSignUp = false }: IProps) => {
         const text = isSignUp ? 'signup_with' : 'signin_with';
 
         window?.google?.accounts?.id?.initialize({
-            client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+            client_id: env('NEXT_PUBLIC_GOOGLE_CLIENT_ID'),
             ux_mode: 'popup',
             context,
             itp_support: 'true',
