@@ -2,14 +2,19 @@
 
 import { useState } from 'react';
 
-import { getRequest } from '@/api/helpers';
+import { useApi } from '@/api/helpers';
 
-export const Test = () => {
+interface IProps {
+    apiUrl: string;
+}
+
+export const Test = ({ apiUrl }: IProps) => {
+    const { GET } = useApi(apiUrl);
     const [data, setData] = useState<any>(null);
 
 
     const getData = async () => {
-        const response = await getRequest('/test');
+        const response = await GET('/test/');
 
         setData(response);
     };

@@ -1,7 +1,6 @@
 import './globals.scss';
 
 import { Metadata } from 'next';
-import { PublicEnvScript } from 'next-runtime-env';
 import React from 'react';
 
 import { generateMeta } from '@/meta/meta.helpers';
@@ -17,9 +16,6 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <head>
-            <PublicEnvScript />
-        </head>
         <body>{children}</body>
         </html>
     );

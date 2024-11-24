@@ -1,20 +1,23 @@
 'use client';
 
-import { env } from 'next-runtime-env';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { REFRESH_TOKEN_LOCALSTORAGE_KEY, TOKEN_LOCALSTORAGE_KEY } from '@/api/constants';
-import { postRequest } from '@/api/helpers';
 import {
     GOOGLE_SCRIPT_SRC,
 } from '@/components/GoogleSignIn/constants';
 import { GoogleCredentialsResponse } from '@/components/GoogleSignIn/types';
+import { useApi } from '@/api/helpers';
 
 interface IProps {
+    apiUrl: string;
+    googleClientId: string;
     isSignUp?: boolean;
 }
 
-export const GoogleSignIn = ({ isSignUp = false }: IProps) => {
+export const GoogleSignIn = ({ apiUrl, googleClientId, isSignUp = false }: IProps) => {
+    const { POST } = useApi(apiUrl);
+
     const [isClient, setIsClient] = useState(false);
     const [isScriptLoaded, setIsScriptLoaded] = useState(false);
 
@@ -28,7 +31,7 @@ export const GoogleSignIn = ({ isSignUp = false }: IProps) => {
 
         const path = isSignUp ? '/sign-up' : '/login';
 
-        const res = await postRequest(path, {
+        const res = await POST(path, {
             token: credentials.credential,
         });
 
@@ -41,7 +44,7 @@ export const GoogleSignIn = ({ isSignUp = false }: IProps) => {
         const text = isSignUp ? 'signup_with' : 'signin_with';
 
         window?.google?.accounts?.id?.initialize({
-            client_id: env('NEXT_PUBLIC_GOOGLE_CLIENT_ID'),
+            client_id: googleClientId,
             ux_mode: 'popup',
             context,
             itp_support: 'true',

@@ -1,54 +1,59 @@
-import { env } from 'next-runtime-env';
-
 import { TOKEN_LOCALSTORAGE_KEY } from '@/api/constants';
 
-const getCsrfToken = async () => {
-    const response = await fetch(`${env('NEXT_PUBLIC_API_URL')}/csrf/`, {
-        method: 'GET',
-        credentials: 'include',
-    });
+export const useApi = (apiUrl: string) => {
+    const getCsrfToken = async () => {
+        const response = await fetch(`${apiUrl}/csrf/`, {
+            method: 'GET',
+            credentials: 'include',
+        });
 
-    const csrfObject = await response.json();
-    const csrf = csrfObject.csrfToken;
+        const csrfObject = await response.json();
+        const csrf = csrfObject.csrfToken;
 
-    return { csrf };
-};
+        return { csrf };
+    };
 
-export const getRequest = async (path: string, queryParams?: any) => {
-    let url = `${env('NEXT_PUBLIC_API_URL')}${path}`;
+    const GET = async (path: string, queryParams?: any) => {
+        let url = `${apiUrl}${path}`;
 
-    const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY) || '';
+        const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY) || '';
 
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token ? `Bearer ${token}` : '',
-        },
-    });
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token ? `Bearer ${token}` : '',
+            },
+        });
 
-    return await response.json();
-};
+        return await response.json();
+    };
 
-export const postRequest = async (path: string, data: any) => {
-    const { csrf } = await getCsrfToken();
+    const POST = async (path: string, data: any) => {
+        const { csrf } = await getCsrfToken();
 
-    let url = `${env('NEXT_PUBLIC_API_URL')}${path}`;
-    const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY) || '';
+        let url = `${apiUrl}${path}`;
+        const token = localStorage.getItem(TOKEN_LOCALSTORAGE_KEY) || '';
 
-    if (!url.endsWith('/')) {
-        url += '/';
+        if (!url.endsWith('/')) {
+            url += '/';
+        }
+
+        const response = await fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': csrf,
+                'Authorization': token ? `Bearer ${token}` : '',
+            },
+        });
+
+        return await response.json();
+    };
+
+    return {
+        GET,
+        POST
     }
-
-    const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-Token': csrf,
-            'Authorization': token ? `Bearer ${token}` : '',
-        },
-    });
-
-    return await response.json();
-};
+}
