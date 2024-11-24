@@ -2,6 +2,8 @@ import { Encrypt } from '@/components/Encrypt';
 import { GoogleSignIn } from '@/components/GoogleSignIn';
 import { Test } from '@/components/Test';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
     const googleClientId = process.env.GOOGLE_CLIENT_ID || '';
     const apiUrl = process.env.API_URL || '';
